@@ -36,7 +36,7 @@ environment variable:</p>
 <h2 id="examples">Examples</h2>
 <h3 id="overview">Overview</h3>
 <p>To get an overview of the available commands, just invoke the program.</p>
-<pre><code>shell&gt; deepl
+<pre><code class="language-text">shell&gt; deepl
 Usage: deepl [OPTIONS] COMMAND [ARGS]...
 
 Options:
@@ -52,18 +52,18 @@ Commands:
 <h3 id="translating-text">Translating Text</h3>
 <p>By default, <code>deepl</code> reads from <code>STDIN</code> and writes to <code>STDOUT</code>, which means that you can integrate
 it nicely into toolchains.</p>
-<pre><code>shell&gt; echo &quot;Please go home.&quot; | deepl translate --source-language EN --target-language DE | cat -
+<pre><code class="language-text">shell&gt; echo &quot;Please go home.&quot; | deepl translate --source-language EN --target-language DE | cat -
 Bitte gehen Sie nach Hause.
 </code></pre>
 <p>By providing the options <code>--input-filepath</code> and / or <code>--output-filepath</code>, you can tell <code>deepl</code> to
 read from / write to files, rather than <code>STDIN</code> / <code>STDOUT</code>.</p>
 <h3 id="retrieving-account-usage-limits">Retrieving Account Usage &amp; Limits</h3>
-<pre><code>shell&gt; deepl usage-information
+<pre><code class="language-text">shell&gt; deepl usage-information
 Available characters per billing period: 250000
 Characters already translated in the current billing period: 3317
 </code></pre>
 <h3 id="retrieving-available-languages">Retrieving Available Languages</h3>
-<pre><code>shell&gt; deepl languages
+<pre><code class="language-text">shell&gt; deepl languages
 DeepL can translate from the following source languages:
   DE    (German)
   EN    (English)
