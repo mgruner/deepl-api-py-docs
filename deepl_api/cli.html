@@ -55,7 +55,7 @@ it nicely into toolchains.</p>
 <pre><code class="language-text">shell&gt; echo &quot;Please go home.&quot; | deepl translate --source-language EN --target-language DE | cat -
 Bitte gehen Sie nach Hause.
 </code></pre>
-<p>By providing the options <code>--input-filepath</code> and / or <code>--output-filepath</code>, you can tell <code>deepl</code> to
+<p>By providing the options <code>--input-file</code> and / or <code>--output-file</code>, you can tell <code>deepl</code> to
 read from / write to files, rather than <code>STDIN</code> / <code>STDOUT</code>.</p>
 <h3 id="retrieving-account-usage-limits">Retrieving Account Usage &amp; Limits</h3>
 <pre><code class="language-text">shell&gt; deepl usage-information
@@ -144,16 +144,16 @@ def languages():
 @run.command()
 @click.option(&#34;-s&#34;, &#34;--source-language&#34;, required=False)
 @click.option(&#34;-t&#34;, &#34;--target-language&#34;, required=True)
-@click.option(&#34;-i&#34;, &#34;--input-filepath&#34;, required=False)
-@click.option(&#34;-o&#34;, &#34;--output-filepath&#34;, required=False)
+@click.option(&#34;-i&#34;, &#34;--input-file&#34;, required=False)
+@click.option(&#34;-o&#34;, &#34;--output-file&#34;, required=False)
 @click.option(&#34;-p&#34;, &#34;--preserve-formatting&#34;, default=None, is_flag=True)
 @click.option(&#34;-m&#34;, &#34;--formality-more&#34;, default=None, is_flag=True)
 @click.option(&#34;-l&#34;, &#34;--formality-less&#34;, default=None, is_flag=True)
 def translate(
     source_language,
     target_language,
-    input_filepath,
-    output_filepath,
+    input_file,
+    output_file,
     preserve_formatting,
     formality_more,
     formality_less,
@@ -161,8 +161,8 @@ def translate(
     try:
         deepl = _get_instance()
 
-        if input_filepath != None:
-            text = pathlib.Path(input_filepath).read_text()
+        if input_file != None:
+            text = pathlib.Path(input_file).read_text()
         else:
             text = sys.stdin.read()
 
@@ -182,8 +182,8 @@ def translate(
 
         translated_text = &#34;\n&#34;.join([entry[&#34;text&#34;] for entry in translations])
 
-        if output_filepath != None:
-            pathlib.Path(output_filepath).write_text(translated_text)
+        if output_file != None:
+            pathlib.Path(output_file).write_text(translated_text)
         else:
             print(translated_text)
 
