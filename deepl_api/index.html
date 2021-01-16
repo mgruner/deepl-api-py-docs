@@ -25,13 +25,13 @@
 <p>Provides a lightweight wrapper for the DeepL Pro REST API.</p>
 <p><em>If you are looking for the <code>deepl</code> commandline utitlity, please refer
 to <a href="cli.html">its documentation</a> instead.</em></p>
-<h1 id="requirements">Requirements</h1>
+<h2 id="requirements">Requirements</h2>
 <p>You need to have a valid <a href="https://www.deepl.com/pro#developer">DeepL Pro Developer</a> account
 with an associated API key. This key must be made available to the application, e. g. via
 environment variable:</p>
 <pre><code class="language-bash">export DEEPL_API_KEY=YOUR_KEY
 </code></pre>
-<h1 id="example">Example</h1>
+<h2 id="example">Example</h2>
 <pre><code class="language-python">import os
 import pytest
 import deepl_api
@@ -51,7 +51,7 @@ def test_documentation():
     assert usage_information.character_limit &gt; 0
 
 </code></pre>
-<h1 id="see-also">See Also</h1>
+<h2 id="see-also">See Also</h2>
 <p>The main API functions are documented in the <code><a title="deepl_api.DeepL" href="#deepl_api.DeepL">DeepL</a></code> class.</p>
 <details class="source">
 <summary>

@@ -27,16 +27,16 @@
 <a href="https://www.deepl.com/docs-api/">DeepL API</a> into toolchains without any programming effort.</p>
 <p><em>If you are looking for the <code>deepl-api</code> API library, please refer
 to <a href="../deepl_api/index.html">its documentation</a> instead.</em></p>
-<h1 id="requirements">Requirements</h1>
+<h2 id="requirements">Requirements</h2>
 <p>You need to have a valid <a href="https://www.deepl.com/pro#developer">DeepL Pro Developer</a> account
 with an associated API key. This key must be made available to the application, e. g. via
 environment variable:</p>
 <pre><code class="language-bash">export DEEPL_API_KEY=YOUR_KEY
 </code></pre>
-<h1 id="examples">Examples</h1>
-<h2 id="overview">Overview</h2>
+<h2 id="examples">Examples</h2>
+<h3 id="overview">Overview</h3>
 <p>To get an overview of the available commands, just invoke the program.</p>
-<pre><code class="language-bash">shell&gt; deepl
+<pre><code>shell&gt; deepl
 Usage: deepl [OPTIONS] COMMAND [ARGS]...
 
 Options:
@@ -49,21 +49,21 @@ Commands:
 </code></pre>
 <p>You can call <code>deepl translate --help</code> to get a detailed reference for the various options of the
 <code>translate</code> command, for example.</p>
-<h2 id="translating-text">Translating Text</h2>
+<h3 id="translating-text">Translating Text</h3>
 <p>By default, <code>deepl</code> reads from <code>STDIN</code> and writes to <code>STDOUT</code>, which means that you can integrate
 it nicely into toolchains.</p>
-<pre><code class="language-bash">shell&gt; echo &quot;Please go home.&quot; | deepl translate --source-language EN --target-language DE | cat -
+<pre><code>shell&gt; echo &quot;Please go home.&quot; | deepl translate --source-language EN --target-language DE | cat -
 Bitte gehen Sie nach Hause.
 </code></pre>
 <p>By providing the options <code>--input-filepath</code> and / or <code>--output-filepath</code>, you can tell <code>deepl</code> to
 read from / write to files, rather than <code>STDIN</code> / <code>STDOUT</code>.</p>
-<h2 id="retrieving-account-usage-limits">Retrieving Account Usage &amp; Limits</h2>
-<pre><code class="language-bash">shell&gt; deepl usage-information
+<h3 id="retrieving-account-usage-limits">Retrieving Account Usage &amp; Limits</h3>
+<pre><code>shell&gt; deepl usage-information
 Available characters per billing period: 250000
 Characters already translated in the current billing period: 3317
 </code></pre>
-<h2 id="retrieving-available-languages">Retrieving Available Languages</h2>
-<pre><code class="language-bash">shell&gt; deepl languages
+<h3 id="retrieving-available-languages">Retrieving Available Languages</h3>
+<pre><code>shell&gt; deepl languages
 DeepL can translate from the following source languages:
   DE    (German)
   EN    (English)
