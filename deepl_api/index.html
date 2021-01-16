@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>deepl_api API documentation</title>
+<meta name="description" content="Provides a lightweight wrapper for the DeepL Pro REST API …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>deepl_api</code></h1>
+</header>
+<section id="section-intro">
+<p>Provides a lightweight wrapper for the DeepL Pro REST API.</p>
+<p><em>If you are looking for the <code>deepl</code> commandline utitlity, please refer
+to <a href="cli.html">its documentation</a> instead.</em></p>
+<h1 id="requirements">Requirements</h1>
+<p>You need to have a valid <a href="https://www.deepl.com/pro#developer">DeepL Pro Developer</a> account
+with an associated API key. This key must be made available to the application, e. g. via
+environment variable:</p>
+<pre><code class="language-bash">export DEEPL_API_KEY=YOUR_KEY
+</code></pre>
+<h1 id="example">Example</h1>
+<pre><code class="language-python">import os
+import pytest
+import deepl_api
+
+
+def test_documentation():
+
+    # Create a DeepL instance for our account.
+    deepl = deepl_api.DeepL(os.getenv(&quot;DEEPL_API_KEY&quot;))
+
+    # Translate Text
+    translations = deepl.translate(source_language=&quot;DE&quot;, target_language=&quot;EN-US&quot;, texts=[&quot;ja&quot;])
+    assert translations == [{&quot;detected_source_language&quot;: &quot;DE&quot;, &quot;text&quot;: &quot;yes&quot;}]
+
+    # Fetch Usage Information
+    usage_information = deepl_api.DeepL(os.getenv(&quot;DEEPL_API_KEY&quot;)).usage_information()
+    assert usage_information.character_limit &gt; 0
+
+</code></pre>
+<h1 id="see-also">See Also</h1>
+<p>The main API functions are documented in the <code><a title="deepl_api.DeepL" href="#deepl_api.DeepL">DeepL</a></code> class.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Provides a lightweight wrapper for the DeepL Pro REST API.
+
+*If you are looking for the `deepl` commandline utitlity, please refer
+to [its documentation](cli.html) instead.*
+
+.. include:: ./doc_api.md
+
+&#34;&#34;&#34;
+
+__version__ = &#34;0.1.0&#34;
+
+from dataclasses import dataclass
+from enum import Enum
+import requests
+
+from deepl_api.exceptions import (
+    DeeplAuthorizationError,
+    DeeplServerError,
+    DeeplDeserializationError,
+)
+
+
+@dataclass
+class UsageInformation:
+    &#34;&#34;&#34;Information about API usage &amp; limits for this account.&#34;&#34;&#34;
+
+    character_count: int
+    &#34;&#34;&#34;How many characters can be translated per billing period, based on the account settings.&#34;&#34;&#34;
+
+    character_limit: int
+    &#34;&#34;&#34;How many characters were already translated in the current billing period.&#34;&#34;&#34;
+
+
+class SplitSentences(Enum):
+    &#34;&#34;&#34;Translation option that controls the splitting of sentences before the translation.&#34;&#34;&#34;
+
+    NONE = 0
+    &#34;&#34;&#34;Don&#39;t split sentences.&#34;&#34;&#34;
+
+    PUNCTUATION = 1
+    &#34;&#34;&#34;Split on punctiation only.&#34;&#34;&#34;
+
+    PUNCTUATION_AND_NEWLINES = &#34;newlines&#34;
+    &#34;&#34;&#34;Split on punctuation and newlines.&#34;&#34;&#34;
+
+
+class Formality(Enum):
+    &#34;&#34;&#34;Translation option that controls the desired translation formality.&#34;&#34;&#34;
+
+    LESS = &#34;less&#34;
+    &#34;&#34;&#34;Default formality.&#34;&#34;&#34;
+
+    DEFAULT = &#34;default&#34;
+    &#34;&#34;&#34;Translate less formally.&#34;&#34;&#34;
+
+    MORE = &#34;more&#34;
+    &#34;&#34;&#34;Translate more formally.&#34;&#34;&#34;
+
+
+class DeepL:
+    &#34;&#34;&#34;
+    The main API entry point representing a DeepL developer account with an associated API key.
+
+    Use this to create a new DeepL API client instance where multiple function calls can be performed.
+    A valid `api_key` is required.
+
+    Should you ever need to use more than one DeepL account in our program, then you can create one
+    instance for each account / API key.
+
+    ##Error Handling
+
+    These methods may throw exceptions defined in `deepl_api.exceptions` and [requests.exceptions](https://requests.readthedocs.io/en/latest/api/#exceptions).
+
+    &#34;&#34;&#34;
+
+    _api_key: str
+
+    def __init__(self, api_key: str):
+        self._api_key = api_key
+
+    # Private method that performs the HTTP calls.
+    def _api_call(self, url: str, payload: dict):
+        payload[&#34;auth_key&#34;] = self._api_key
+        with requests.post(url, payload) as response:
+            if response.status_code in (
+                requests.codes[&#34;unauthorized&#34;],
+                requests.codes[&#34;forbidden&#34;],
+            ):
+                raise DeeplAuthorizationError(
+                    &#34;Authorization failed, is your API key correct?&#34;
+                )
+
+            if not response.ok:
+                try:
+                    data = response.json()
+                    if data[&#34;message&#34;]:
+                        raise DeeplServerError(
+                            f&#34;An error occurred while communicating with the DeepL server: &#39;{data[&#39;message&#39;]}&#39;.&#34;
+                        )
+                except (ValueError):
+                    pass
+
+            response.raise_for_status()
+            return response.json()
+
+    def usage_information(self) -&gt; UsageInformation:
+        &#34;&#34;&#34;
+        Retrieve information about API usage &amp; limits.
+        This can also be used to verify an API key without consuming translation contingent.
+
+        See also the [vendor documentation](https://www.deepl.com/docs-api/other-functions/monitoring-usage/).
+        &#34;&#34;&#34;
+
+        data = self._api_call(&#34;https://api.deepl.com/v2/usage&#34;, {})
+
+        if not &#34;character_count&#34; in (data):
+            raise DeeplDeserializationError()
+
+        return UsageInformation(
+            character_count=data[&#34;character_count&#34;],
+            character_limit=data[&#34;character_limit&#34;],
+        )
+
+    # Private method to make the API calls for the language lists.
+    def _languages(self, ltype: str):
+        data = self._api_call(&#34;https://api.deepl.com/v2/languages&#34;, {&#34;type&#34;: ltype})
+
+        if not &#34;language&#34; in (data[0]):
+            raise DeeplDeserializationError()
+
+        return {item[&#34;language&#34;]: item[&#34;name&#34;] for item in data}
+
+    def source_languages(self) -&gt; dict:
+        &#34;&#34;&#34;
+        Retrieve all currently available source languages.
+
+        See also the [vendor documentation](https://www.deepl.com/docs-api/other-functions/listing-supported-languages/).
+        &#34;&#34;&#34;
+
+        return self._languages(&#34;source&#34;)
+
+    def target_languages(self) -&gt; dict:
+        &#34;&#34;&#34;
+        Retrieve all currently available target languages.
+
+        See also the [vendor documentation](https://www.deepl.com/docs-api/other-functions/listing-supported-languages/).
+        &#34;&#34;&#34;
+
+        return self._languages(&#34;target&#34;)
+
+    def translate(
+        self,
+        *,
+        source_language: str = None,
+        target_language: str,
+        split_sentences: SplitSentences = None,
+        preserve_formatting: bool = None,
+        formality: Formality = None,
+        texts: list,
+    ) -&gt; list:
+        &#34;&#34;&#34;
+        Translate one or more [text chunks](TranslatableTextList) at once. You can pass in optional
+        translation options if you need non-default behaviour.
+
+        Please see the parameter documentation and the
+        [vendor documentation](https://www.deepl.com/docs-api/translating-text/) for details.
+
+        Returns a list of dictionaries for the translated content:
+
+        ```python
+        [
+            {
+                &#34;detected_source_language&#34;: &#34;DE&#34;,
+                &#34;text&#34;: &#34;Yes. No.&#34;,
+            },
+            ...
+        ]
+        ```
+        &#34;&#34;&#34;
+
+        payload = {
+            &#34;target_lang&#34;: target_language,
+            &#34;text&#34;: texts,
+        }
+        if source_language != None:
+            payload[&#34;source_lang&#34;] = source_language
+
+        if split_sentences != None:
+            payload[&#34;split_sentences&#34;] = split_sentences.value
+
+        if preserve_formatting != None:
+            payload[&#34;preserve_formatting&#34;] = 1 if preserve_formatting else 0
+
+        if formality != None:
+            payload[&#34;formality&#34;] = formality.value
+
+        data = self._api_call(&#34;https://api.deepl.com/v2/translate&#34;, payload)
+
+        if not &#34;translations&#34; in (data):
+            raise DeeplDeserializationError
+
+        return data[&#34;translations&#34;]</code></pre>
+</details>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="deepl_api.cli" href="cli.html">deepl_api.cli</a></code></dt>
+<dd>
+<div class="desc"><p>Unix-style commandline application for integrating the
+<a href="https://www.deepl.com/docs-api/">DeepL API</a> into toolchains without any programming effort …</p></div>
+</dd>
+<dt><code class="name"><a title="deepl_api.exceptions" href="exceptions.html">deepl_api.exceptions</a></code></dt>
+<dd>
+<div class="desc"><p>DeepL API exception classes.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="deepl_api.DeepL"><code class="flex name class">
+<span>class <span class="ident">DeepL</span></span>
+<span>(</span><span>api_key: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The main API entry point representing a DeepL developer account with an associated API key.</p>
+<p>Use this to create a new DeepL API client instance where multiple function calls can be performed.
+A valid <code>api_key</code> is required.</p>
+<p>Should you ever need to use more than one DeepL account in our program, then you can create one
+instance for each account / API key.</p>
+<h2 id="error-handling">Error Handling</h2>
+<p>These methods may throw exceptions defined in <code><a title="deepl_api.exceptions" href="exceptions.html">deepl_api.exceptions</a></code> and <a href="https://requests.readthedocs.io/en/latest/api/#exceptions">requests.exceptions</a>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DeepL:
+    &#34;&#34;&#34;
+    The main API entry point representing a DeepL developer account with an associated API key.
+
+    Use this to create a new DeepL API client instance where multiple function calls can be performed.
+    A valid `api_key` is required.
+
+    Should you ever need to use more than one DeepL account in our program, then you can create one
+    instance for each account / API key.
+
+    ##Error Handling
+
+    These methods may throw exceptions defined in `deepl_api.exceptions` and [requests.exceptions](https://requests.readthedocs.io/en/latest/api/#exceptions).
+
+    &#34;&#34;&#34;
+
+    _api_key: str
+
+    def __init__(self, api_key: str):
+        self._api_key = api_key
+
+    # Private method that performs the HTTP calls.
+    def _api_call(self, url: str, payload: dict):
+        payload[&#34;auth_key&#34;] = self._api_key
+        with requests.post(url, payload) as response:
+            if response.status_code in (
+                requests.codes[&#34;unauthorized&#34;],
+                requests.codes[&#34;forbidden&#34;],
+            ):
+                raise DeeplAuthorizationError(
+                    &#34;Authorization failed, is your API key correct?&#34;
+                )
+
+            if not response.ok:
+                try:
+                    data = response.json()
+                    if data[&#34;message&#34;]:
+                        raise DeeplServerError(
+                            f&#34;An error occurred while communicating with the DeepL server: &#39;{data[&#39;message&#39;]}&#39;.&#34;
+                        )
+                except (ValueError):
+                    pass
+
+            response.raise_for_status()
+            return response.json()
+
+    def usage_information(self) -&gt; UsageInformation:
+        &#34;&#34;&#34;
+        Retrieve information about API usage &amp; limits.
+        This can also be used to verify an API key without consuming translation contingent.
+
+        See also the [vendor documentation](https://www.deepl.com/docs-api/other-functions/monitoring-usage/).
+        &#34;&#34;&#34;
+
+        data = self._api_call(&#34;https://api.deepl.com/v2/usage&#34;, {})
+
+        if not &#34;character_count&#34; in (data):
+            raise DeeplDeserializationError()
+
+        return UsageInformation(
+            character_count=data[&#34;character_count&#34;],
+            character_limit=data[&#34;character_limit&#34;],
+        )
+
+    # Private method to make the API calls for the language lists.
+    def _languages(self, ltype: str):
+        data = self._api_call(&#34;https://api.deepl.com/v2/languages&#34;, {&#34;type&#34;: ltype})
+
+        if not &#34;language&#34; in (data[0]):
+            raise DeeplDeserializationError()
+
+        return {item[&#34;language&#34;]: item[&#34;name&#34;] for item in data}
+
+    def source_languages(self) -&gt; dict:
+        &#34;&#34;&#34;
+        Retrieve all currently available source languages.
+
+        See also the [vendor documentation](https://www.deepl.com/docs-api/other-functions/listing-supported-languages/).
+        &#34;&#34;&#34;
+
+        return self._languages(&#34;source&#34;)
+
+    def target_languages(self) -&gt; dict:
+        &#34;&#34;&#34;
+        Retrieve all currently available target languages.
+
+        See also the [vendor documentation](https://www.deepl.com/docs-api/other-functions/listing-supported-languages/).
+        &#34;&#34;&#34;
+
+        return self._languages(&#34;target&#34;)
+
+    def translate(
+        self,
+        *,
+        source_language: str = None,
+        target_language: str,
+        split_sentences: SplitSentences = None,
+        preserve_formatting: bool = None,
+        formality: Formality = None,
+        texts: list,
+    ) -&gt; list:
+        &#34;&#34;&#34;
+        Translate one or more [text chunks](TranslatableTextList) at once. You can pass in optional
+        translation options if you need non-default behaviour.
+
+        Please see the parameter documentation and the
+        [vendor documentation](https://www.deepl.com/docs-api/translating-text/) for details.
+
+        Returns a list of dictionaries for the translated content:
+
+        ```python
+        [
+            {
+                &#34;detected_source_language&#34;: &#34;DE&#34;,
+                &#34;text&#34;: &#34;Yes. No.&#34;,
+            },
+            ...
+        ]
+        ```
+        &#34;&#34;&#34;
+
+        payload = {
+            &#34;target_lang&#34;: target_language,
+            &#34;text&#34;: texts,
+        }
+        if source_language != None:
+            payload[&#34;source_lang&#34;] = source_language
+
+        if split_sentences != None:
+            payload[&#34;split_sentences&#34;] = split_sentences.value
+
+        if preserve_formatting != None:
+            payload[&#34;preserve_formatting&#34;] = 1 if preserve_formatting else 0
+
+        if formality != None:
+            payload[&#34;formality&#34;] = formality.value
+
+        data = self._api_call(&#34;https://api.deepl.com/v2/translate&#34;, payload)
+
+        if not &#34;translations&#34; in (data):
+            raise DeeplDeserializationError
+
+        return data[&#34;translations&#34;]</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="deepl_api.DeepL.source_languages"><code class="name flex">
+<span>def <span class="ident">source_languages</span></span>(<span>self) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve all currently available source languages.</p>
+<p>See also the <a href="https://www.deepl.com/docs-api/other-functions/listing-supported-languages/">vendor documentation</a>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def source_languages(self) -&gt; dict:
+    &#34;&#34;&#34;
+    Retrieve all currently available source languages.
+
+    See also the [vendor documentation](https://www.deepl.com/docs-api/other-functions/listing-supported-languages/).
+    &#34;&#34;&#34;
+
+    return self._languages(&#34;source&#34;)</code></pre>
+</details>
+</dd>
+<dt id="deepl_api.DeepL.target_languages"><code class="name flex">
+<span>def <span class="ident">target_languages</span></span>(<span>self) ‑> dict</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve all currently available target languages.</p>
+<p>See also the <a href="https://www.deepl.com/docs-api/other-functions/listing-supported-languages/">vendor documentation</a>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def target_languages(self) -&gt; dict:
+    &#34;&#34;&#34;
+    Retrieve all currently available target languages.
+
+    See also the [vendor documentation](https://www.deepl.com/docs-api/other-functions/listing-supported-languages/).
+    &#34;&#34;&#34;
+
+    return self._languages(&#34;target&#34;)</code></pre>
+</details>
+</dd>
+<dt id="deepl_api.DeepL.translate"><code class="name flex">
+<span>def <span class="ident">translate</span></span>(<span>self, *, source_language: str = None, target_language: str, split_sentences: <a title="deepl_api.SplitSentences" href="#deepl_api.SplitSentences">SplitSentences</a> = None, preserve_formatting: bool = None, formality: <a title="deepl_api.Formality" href="#deepl_api.Formality">Formality</a> = None, texts: list) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Translate one or more <a href="TranslatableTextList">text chunks</a> at once. You can pass in optional
+translation options if you need non-default behaviour.</p>
+<p>Please see the parameter documentation and the
+<a href="https://www.deepl.com/docs-api/translating-text/">vendor documentation</a> for details.</p>
+<p>Returns a list of dictionaries for the translated content:</p>
+<pre><code class="language-python">[
+    {
+        &quot;detected_source_language&quot;: &quot;DE&quot;,
+        &quot;text&quot;: &quot;Yes. No.&quot;,
+    },
+    ...
+]
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def translate(
+    self,
+    *,
+    source_language: str = None,
+    target_language: str,
+    split_sentences: SplitSentences = None,
+    preserve_formatting: bool = None,
+    formality: Formality = None,
+    texts: list,
+) -&gt; list:
+    &#34;&#34;&#34;
+    Translate one or more [text chunks](TranslatableTextList) at once. You can pass in optional
+    translation options if you need non-default behaviour.
+
+    Please see the parameter documentation and the
+    [vendor documentation](https://www.deepl.com/docs-api/translating-text/) for details.
+
+    Returns a list of dictionaries for the translated content:
+
+    ```python
+    [
+        {
+            &#34;detected_source_language&#34;: &#34;DE&#34;,
+            &#34;text&#34;: &#34;Yes. No.&#34;,
+        },
+        ...
+    ]
+    ```
+    &#34;&#34;&#34;
+
+    payload = {
+        &#34;target_lang&#34;: target_language,
+        &#34;text&#34;: texts,
+    }
+    if source_language != None:
+        payload[&#34;source_lang&#34;] = source_language
+
+    if split_sentences != None:
+        payload[&#34;split_sentences&#34;] = split_sentences.value
+
+    if preserve_formatting != None:
+        payload[&#34;preserve_formatting&#34;] = 1 if preserve_formatting else 0
+
+    if formality != None:
+        payload[&#34;formality&#34;] = formality.value
+
+    data = self._api_call(&#34;https://api.deepl.com/v2/translate&#34;, payload)
+
+    if not &#34;translations&#34; in (data):
+        raise DeeplDeserializationError
+
+    return data[&#34;translations&#34;]</code></pre>
+</details>
+</dd>
+<dt id="deepl_api.DeepL.usage_information"><code class="name flex">
+<span>def <span class="ident">usage_information</span></span>(<span>self) ‑> <a title="deepl_api.UsageInformation" href="#deepl_api.UsageInformation">UsageInformation</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve information about API usage &amp; limits.
+This can also be used to verify an API key without consuming translation contingent.</p>
+<p>See also the <a href="https://www.deepl.com/docs-api/other-functions/monitoring-usage/">vendor documentation</a>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def usage_information(self) -&gt; UsageInformation:
+    &#34;&#34;&#34;
+    Retrieve information about API usage &amp; limits.
+    This can also be used to verify an API key without consuming translation contingent.
+
+    See also the [vendor documentation](https://www.deepl.com/docs-api/other-functions/monitoring-usage/).
+    &#34;&#34;&#34;
+
+    data = self._api_call(&#34;https://api.deepl.com/v2/usage&#34;, {})
+
+    if not &#34;character_count&#34; in (data):
+        raise DeeplDeserializationError()
+
+    return UsageInformation(
+        character_count=data[&#34;character_count&#34;],
+        character_limit=data[&#34;character_limit&#34;],
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="deepl_api.Formality"><code class="flex name class">
+<span>class <span class="ident">Formality</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Translation option that controls the desired translation formality.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Formality(Enum):
+    &#34;&#34;&#34;Translation option that controls the desired translation formality.&#34;&#34;&#34;
+
+    LESS = &#34;less&#34;
+    &#34;&#34;&#34;Default formality.&#34;&#34;&#34;
+
+    DEFAULT = &#34;default&#34;
+    &#34;&#34;&#34;Translate less formally.&#34;&#34;&#34;
+
+    MORE = &#34;more&#34;
+    &#34;&#34;&#34;Translate more formally.&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="deepl_api.Formality.DEFAULT"><code class="name">var <span class="ident">DEFAULT</span></code></dt>
+<dd>
+<div class="desc"><p>Translate less formally.</p></div>
+</dd>
+<dt id="deepl_api.Formality.LESS"><code class="name">var <span class="ident">LESS</span></code></dt>
+<dd>
+<div class="desc"><p>Default formality.</p></div>
+</dd>
+<dt id="deepl_api.Formality.MORE"><code class="name">var <span class="ident">MORE</span></code></dt>
+<dd>
+<div class="desc"><p>Translate more formally.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="deepl_api.SplitSentences"><code class="flex name class">
+<span>class <span class="ident">SplitSentences</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Translation option that controls the splitting of sentences before the translation.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SplitSentences(Enum):
+    &#34;&#34;&#34;Translation option that controls the splitting of sentences before the translation.&#34;&#34;&#34;
+
+    NONE = 0
+    &#34;&#34;&#34;Don&#39;t split sentences.&#34;&#34;&#34;
+
+    PUNCTUATION = 1
+    &#34;&#34;&#34;Split on punctiation only.&#34;&#34;&#34;
+
+    PUNCTUATION_AND_NEWLINES = &#34;newlines&#34;
+    &#34;&#34;&#34;Split on punctuation and newlines.&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="deepl_api.SplitSentences.NONE"><code class="name">var <span class="ident">NONE</span></code></dt>
+<dd>
+<div class="desc"><p>Don't split sentences.</p></div>
+</dd>
+<dt id="deepl_api.SplitSentences.PUNCTUATION"><code class="name">var <span class="ident">PUNCTUATION</span></code></dt>
+<dd>
+<div class="desc"><p>Split on punctiation only.</p></div>
+</dd>
+<dt id="deepl_api.SplitSentences.PUNCTUATION_AND_NEWLINES"><code class="name">var <span class="ident">PUNCTUATION_AND_NEWLINES</span></code></dt>
+<dd>
+<div class="desc"><p>Split on punctuation and newlines.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="deepl_api.UsageInformation"><code class="flex name class">
+<span>class <span class="ident">UsageInformation</span></span>
+<span>(</span><span>character_count: int, character_limit: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Information about API usage &amp; limits for this account.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class UsageInformation:
+    &#34;&#34;&#34;Information about API usage &amp; limits for this account.&#34;&#34;&#34;
+
+    character_count: int
+    &#34;&#34;&#34;How many characters can be translated per billing period, based on the account settings.&#34;&#34;&#34;
+
+    character_limit: int
+    &#34;&#34;&#34;How many characters were already translated in the current billing period.&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="deepl_api.UsageInformation.character_count"><code class="name">var <span class="ident">character_count</span> : int</code></dt>
+<dd>
+<div class="desc"><p>How many characters can be translated per billing period, based on the account settings.</p></div>
+</dd>
+<dt id="deepl_api.UsageInformation.character_limit"><code class="name">var <span class="ident">character_limit</span> : int</code></dt>
+<dd>
+<div class="desc"><p>How many characters were already translated in the current billing period.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#example">Example</a></li>
+<li><a href="#see-also">See Also</a></li>
+</ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="deepl_api.cli" href="cli.html">deepl_api.cli</a></code></li>
+<li><code><a title="deepl_api.exceptions" href="exceptions.html">deepl_api.exceptions</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="deepl_api.DeepL" href="#deepl_api.DeepL">DeepL</a></code></h4>
+<ul class="">
+<li><code><a title="deepl_api.DeepL.source_languages" href="#deepl_api.DeepL.source_languages">source_languages</a></code></li>
+<li><code><a title="deepl_api.DeepL.target_languages" href="#deepl_api.DeepL.target_languages">target_languages</a></code></li>
+<li><code><a title="deepl_api.DeepL.translate" href="#deepl_api.DeepL.translate">translate</a></code></li>
+<li><code><a title="deepl_api.DeepL.usage_information" href="#deepl_api.DeepL.usage_information">usage_information</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="deepl_api.Formality" href="#deepl_api.Formality">Formality</a></code></h4>
+<ul class="">
+<li><code><a title="deepl_api.Formality.DEFAULT" href="#deepl_api.Formality.DEFAULT">DEFAULT</a></code></li>
+<li><code><a title="deepl_api.Formality.LESS" href="#deepl_api.Formality.LESS">LESS</a></code></li>
+<li><code><a title="deepl_api.Formality.MORE" href="#deepl_api.Formality.MORE">MORE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="deepl_api.SplitSentences" href="#deepl_api.SplitSentences">SplitSentences</a></code></h4>
+<ul class="">
+<li><code><a title="deepl_api.SplitSentences.NONE" href="#deepl_api.SplitSentences.NONE">NONE</a></code></li>
+<li><code><a title="deepl_api.SplitSentences.PUNCTUATION" href="#deepl_api.SplitSentences.PUNCTUATION">PUNCTUATION</a></code></li>
+<li><code><a title="deepl_api.SplitSentences.PUNCTUATION_AND_NEWLINES" href="#deepl_api.SplitSentences.PUNCTUATION_AND_NEWLINES">PUNCTUATION_AND_NEWLINES</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="deepl_api.UsageInformation" href="#deepl_api.UsageInformation">UsageInformation</a></code></h4>
+<ul class="">
+<li><code><a title="deepl_api.UsageInformation.character_count" href="#deepl_api.UsageInformation.character_count">character_count</a></code></li>
+<li><code><a title="deepl_api.UsageInformation.character_limit" href="#deepl_api.UsageInformation.character_limit">character_limit</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
