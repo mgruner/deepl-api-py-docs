@@ -134,14 +134,18 @@ class DeepL:
     &#34;&#34;&#34;
 
     _api_key: str
+    _api_base_url = &#34;https://api.deepl.com/v2&#34;
 
     def __init__(self, api_key: str):
         self._api_key = api_key
 
     # Private method that performs the HTTP calls.
-    def _api_call(self, url: str, payload: dict):
-        payload[&#34;auth_key&#34;] = self._api_key
-        with requests.post(url, payload) as response:
+    def _api_call(self, url: str, payload: dict = {}):
+
+        # Create a new dict to avoid modifying the passed one.
+        post_data = {**payload, &#39;auth_key&#39;: self._api_key}
+
+        with requests.post(self._api_base_url + url, post_data) as response:
             if response.status_code in (
                 requests.codes[&#34;unauthorized&#34;],
                 requests.codes[&#34;forbidden&#34;],
@@ -150,6 +154,8 @@ class DeepL:
                     &#34;Authorization failed, is your API key correct?&#34;
                 )
 
+            # DeepL sends back error messages in the response body.
+            #   Try to fetch them to construct more helpful exceptions.
             if not response.ok:
                 try:
                     data = response.json()
@@ -157,9 +163,12 @@ class DeepL:
                         raise DeeplServerError(
                             f&#34;An error occurred while communicating with the DeepL server: &#39;{data[&#39;message&#39;]}&#39;.&#34;
                         )
+                # In case the message could not be decoded, just go on to raise
+                #   a built-in &#34;requests&#34; exception.
                 except (ValueError):
                     pass
 
+            # Use the default error handling of &#34;requests&#34;.
             response.raise_for_status()
             return response.json()
 
@@ -171,7 +180,7 @@ class DeepL:
         See also the [vendor documentation](https://www.deepl.com/docs-api/other-functions/monitoring-usage/).
         &#34;&#34;&#34;
 
-        data = self._api_call(&#34;https://api.deepl.com/v2/usage&#34;, {})
+        data = self._api_call(&#34;/usage&#34;)
 
         if not &#34;character_count&#34; in (data):
             raise DeeplDeserializationError()
@@ -183,7 +192,7 @@ class DeepL:
 
     # Private method to make the API calls for the language lists.
     def _languages(self, ltype: str):
-        data = self._api_call(&#34;https://api.deepl.com/v2/languages&#34;, {&#34;type&#34;: ltype})
+        data = self._api_call(&#34;/languages&#34;, {&#34;type&#34;: ltype})
 
         if not &#34;language&#34; in (data[0]):
             raise DeeplDeserializationError()
@@ -254,7 +263,7 @@ class DeepL:
         if formality != None:
             payload[&#34;formality&#34;] = formality.value
 
-        data = self._api_call(&#34;https://api.deepl.com/v2/translate&#34;, payload)
+        data = self._api_call(&#34;/translate&#34;, payload)
 
         if not &#34;translations&#34; in (data):
             raise DeeplDeserializationError
@@ -316,14 +325,18 @@ instance for each account / API key.</p>
     &#34;&#34;&#34;
 
     _api_key: str
+    _api_base_url = &#34;https://api.deepl.com/v2&#34;
 
     def __init__(self, api_key: str):
         self._api_key = api_key
 
     # Private method that performs the HTTP calls.
-    def _api_call(self, url: str, payload: dict):
-        payload[&#34;auth_key&#34;] = self._api_key
-        with requests.post(url, payload) as response:
+    def _api_call(self, url: str, payload: dict = {}):
+
+        # Create a new dict to avoid modifying the passed one.
+        post_data = {**payload, &#39;auth_key&#39;: self._api_key}
+
+        with requests.post(self._api_base_url + url, post_data) as response:
             if response.status_code in (
                 requests.codes[&#34;unauthorized&#34;],
                 requests.codes[&#34;forbidden&#34;],
@@ -332,6 +345,8 @@ instance for each account / API key.</p>
                     &#34;Authorization failed, is your API key correct?&#34;
                 )
 
+            # DeepL sends back error messages in the response body.
+            #   Try to fetch them to construct more helpful exceptions.
             if not response.ok:
                 try:
                     data = response.json()
@@ -339,9 +354,12 @@ instance for each account / API key.</p>
                         raise DeeplServerError(
                             f&#34;An error occurred while communicating with the DeepL server: &#39;{data[&#39;message&#39;]}&#39;.&#34;
                         )
+                # In case the message could not be decoded, just go on to raise
+                #   a built-in &#34;requests&#34; exception.
                 except (ValueError):
                     pass
 
+            # Use the default error handling of &#34;requests&#34;.
             response.raise_for_status()
             return response.json()
 
@@ -353,7 +371,7 @@ instance for each account / API key.</p>
         See also the [vendor documentation](https://www.deepl.com/docs-api/other-functions/monitoring-usage/).
         &#34;&#34;&#34;
 
-        data = self._api_call(&#34;https://api.deepl.com/v2/usage&#34;, {})
+        data = self._api_call(&#34;/usage&#34;)
 
         if not &#34;character_count&#34; in (data):
             raise DeeplDeserializationError()
@@ -365,7 +383,7 @@ instance for each account / API key.</p>
 
     # Private method to make the API calls for the language lists.
     def _languages(self, ltype: str):
-        data = self._api_call(&#34;https://api.deepl.com/v2/languages&#34;, {&#34;type&#34;: ltype})
+        data = self._api_call(&#34;/languages&#34;, {&#34;type&#34;: ltype})
 
         if not &#34;language&#34; in (data[0]):
             raise DeeplDeserializationError()
@@ -436,7 +454,7 @@ instance for each account / API key.</p>
         if formality != None:
             payload[&#34;formality&#34;] = formality.value
 
-        data = self._api_call(&#34;https://api.deepl.com/v2/translate&#34;, payload)
+        data = self._api_call(&#34;/translate&#34;, payload)
 
         if not &#34;translations&#34; in (data):
             raise DeeplDeserializationError
@@ -552,7 +570,7 @@ translation options if you need non-default behaviour.</p>
     if formality != None:
         payload[&#34;formality&#34;] = formality.value
 
-    data = self._api_call(&#34;https://api.deepl.com/v2/translate&#34;, payload)
+    data = self._api_call(&#34;/translate&#34;, payload)
 
     if not &#34;translations&#34; in (data):
         raise DeeplDeserializationError
@@ -579,7 +597,7 @@ This can also be used to verify an API key without consuming translation conting
     See also the [vendor documentation](https://www.deepl.com/docs-api/other-functions/monitoring-usage/).
     &#34;&#34;&#34;
 
-    data = self._api_call(&#34;https://api.deepl.com/v2/usage&#34;, {})
+    data = self._api_call(&#34;/usage&#34;)
 
     if not &#34;character_count&#34; in (data):
         raise DeeplDeserializationError()
