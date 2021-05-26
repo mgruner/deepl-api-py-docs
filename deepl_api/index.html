@@ -134,16 +134,21 @@ class DeepL:
     &#34;&#34;&#34;
 
     _api_key: str
-    _api_base_url = &#34;https://api.deepl.com/v2&#34;
+    _api_base_url: str
 
     def __init__(self, api_key: str):
         self._api_key = api_key
+        self._api_base_url = (
+            &#34;https://api-free.deepl.com/v2&#34;
+            if api_key.endswith(&#34;:fx&#34;)
+            else &#34;https://api.deepl.com/v2&#34;
+        )
 
     # Private method that performs the HTTP calls.
     def _api_call(self, url: str, payload: dict = {}):
 
         # Create a new dict to avoid modifying the passed one.
-        post_data = {**payload, &#39;auth_key&#39;: self._api_key}
+        post_data = {**payload, &#34;auth_key&#34;: self._api_key}
 
         with requests.post(self._api_base_url + url, post_data) as response:
             if response.status_code in (
@@ -325,16 +330,21 @@ instance for each account / API key.</p>
     &#34;&#34;&#34;
 
     _api_key: str
-    _api_base_url = &#34;https://api.deepl.com/v2&#34;
+    _api_base_url: str
 
     def __init__(self, api_key: str):
         self._api_key = api_key
+        self._api_base_url = (
+            &#34;https://api-free.deepl.com/v2&#34;
+            if api_key.endswith(&#34;:fx&#34;)
+            else &#34;https://api.deepl.com/v2&#34;
+        )
 
     # Private method that performs the HTTP calls.
     def _api_call(self, url: str, payload: dict = {}):
 
         # Create a new dict to avoid modifying the passed one.
-        post_data = {**payload, &#39;auth_key&#39;: self._api_key}
+        post_data = {**payload, &#34;auth_key&#34;: self._api_key}
 
         with requests.post(self._api_base_url + url, post_data) as response:
             if response.status_code in (
