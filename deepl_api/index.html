@@ -230,6 +230,7 @@ class DeepL:
         split_sentences: SplitSentences = None,
         preserve_formatting: bool = None,
         formality: Formality = None,
+        handle_xml: bool = None,
         texts: list,
     ) -&gt; list:
         &#34;&#34;&#34;
@@ -267,6 +268,9 @@ class DeepL:
 
         if formality != None:
             payload[&#34;formality&#34;] = formality.value
+
+        if handle_xml:
+            payload[&#34;tag_handling&#34;] = &#34;xml&#34;
 
         data = self._api_call(&#34;/translate&#34;, payload)
 
@@ -426,6 +430,7 @@ instance for each account / API key.</p>
         split_sentences: SplitSentences = None,
         preserve_formatting: bool = None,
         formality: Formality = None,
+        handle_xml: bool = None,
         texts: list,
     ) -&gt; list:
         &#34;&#34;&#34;
@@ -463,6 +468,9 @@ instance for each account / API key.</p>
 
         if formality != None:
             payload[&#34;formality&#34;] = formality.value
+
+        if handle_xml:
+            payload[&#34;tag_handling&#34;] = &#34;xml&#34;
 
         data = self._api_call(&#34;/translate&#34;, payload)
 
@@ -514,7 +522,7 @@ instance for each account / API key.</p>
 </details>
 </dd>
 <dt id="deepl_api.DeepL.translate"><code class="name flex">
-<span>def <span class="ident">translate</span></span>(<span>self, *, source_language: str = None, target_language: str, split_sentences: <a title="deepl_api.SplitSentences" href="#deepl_api.SplitSentences">SplitSentences</a> = None, preserve_formatting: bool = None, formality: <a title="deepl_api.Formality" href="#deepl_api.Formality">Formality</a> = None, texts: list) ‑> list</span>
+<span>def <span class="ident">translate</span></span>(<span>self, *, source_language: str = None, target_language: str, split_sentences: <a title="deepl_api.SplitSentences" href="#deepl_api.SplitSentences">SplitSentences</a> = None, preserve_formatting: bool = None, formality: <a title="deepl_api.Formality" href="#deepl_api.Formality">Formality</a> = None, handle_xml: bool = None, texts: list) ‑> list</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Translate one or more text chunks at once. You can pass in optional
@@ -542,6 +550,7 @@ translation options if you need non-default behaviour.</p>
     split_sentences: SplitSentences = None,
     preserve_formatting: bool = None,
     formality: Formality = None,
+    handle_xml: bool = None,
     texts: list,
 ) -&gt; list:
     &#34;&#34;&#34;
@@ -579,6 +588,9 @@ translation options if you need non-default behaviour.</p>
 
     if formality != None:
         payload[&#34;formality&#34;] = formality.value
+
+    if handle_xml:
+        payload[&#34;tag_handling&#34;] = &#34;xml&#34;
 
     data = self._api_call(&#34;/translate&#34;, payload)
 
